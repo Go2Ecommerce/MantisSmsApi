@@ -1,3 +1,4 @@
 Plugin do wysylania notyfikacji poprzez SMS-API
 
-Aby uruchomic nalezy w folderze plugins sklonowac repozytorium do folderu SmsApi
+Installation:
+git clone https://github.com/Go2Ecommerce/MantisSmsApi.git SmsApi
