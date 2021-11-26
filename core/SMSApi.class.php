@@ -26,7 +26,8 @@ class SMSApi {
                 'to' => $t_row_user['phone_number'],
                 'from' => 'Test',
                 'message' => $message,
-                'format' => 'json'
+                'format' => 'json',
+                'encoding' => 'utf-8'
             );
 
             $this->sms_send($params, plugin_config_get( 'smsApiKey' ));
