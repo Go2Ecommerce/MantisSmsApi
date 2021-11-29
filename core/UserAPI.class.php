@@ -61,10 +61,8 @@ class UserAPI {
                 break;
         }
         echo $str_open;
-//        $dgOpt = array('input_prefix' => $this->inputPrefix);
         foreach($attr as $key => $val) {
-//            $xx = array($key => $val);
-            \helperMethodsPlugin::drawInputTextRow( $key, $val );
+            \helperMethodsPlugin::drawInputTextRow( $key, $val , array('lbl' => plugin_lang_get($key)));
         }
         echo $str_close;
     }
