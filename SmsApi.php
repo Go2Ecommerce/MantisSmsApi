@@ -65,8 +65,8 @@ class SmsApiPlugin extends MantisPlugin
         plugin_require_api('core/SMSApi.class.php');
 
         $obj = new stdClass();
-        $obj->fieldsKeys = [];
-        $obj->inputs = [];
+        $obj->fieldsKeys = $this->fieldsKeysFor['user'];
+        $obj->inputs = $this->inputsFor['user'];
         $obj->inputPrefix = $this->inputPrefix;
         $this->userAPI = new SmsApi\UserAPI( $obj );
         $this->smsApi = new SmsApi\SMSApi();
