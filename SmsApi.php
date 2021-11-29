@@ -22,7 +22,6 @@ class SmsApiPlugin extends MantisPlugin
         return array(
             'EVENT_MENU_MAIN' => 'menu',
 
-
             'EVENT_MANAGE_USER_CREATE_FORM' => 'manageUserCreateForm',
             'EVENT_MANAGE_USER_CREATE' => 'saveUser',
             'EVENT_MANAGE_USER_UPDATE_FORM' => 'manageUserUpdateForm',
@@ -34,9 +33,6 @@ class SmsApiPlugin extends MantisPlugin
         );
     }
 
-    /**
-     *
-     */
     function config()
     {
         $cfg = array(
@@ -69,8 +65,8 @@ class SmsApiPlugin extends MantisPlugin
         plugin_require_api('core/SMSApi.class.php');
 
         $obj = new stdClass();
-        $obj->fieldsKeys = $this->fieldsKeysFor['user'];
-        $obj->inputs = $this->inputsFor['user'];
+        $obj->fieldsKeys = [];
+        $obj->inputs = [];
         $obj->inputPrefix = $this->inputPrefix;
         $this->userAPI = new SmsApi\UserAPI( $obj );
         $this->smsApi = new SmsApi\SMSApi();
@@ -85,7 +81,6 @@ class SmsApiPlugin extends MantisPlugin
     }
 
     function saveUser( $p_event, $p_user_id ) {
-
         $table = plugin_table( 'users' );
         db_param_push();
         $t_query = " SELECT user_id 
@@ -101,7 +96,6 @@ class SmsApiPlugin extends MantisPlugin
     }
 
     function deleteUser($p_event, $p_user_id) {
-
         $t_debug = '/* ' . __METHOD__ . ' */ ';
 
         $table = plugin_table( 'users' );
@@ -113,7 +107,6 @@ class SmsApiPlugin extends MantisPlugin
     }
 
     function deleteProject($p_event, $p_project_id) {
-
         $t_debug = '/* ' . __METHOD__ . ' */ ';
 
         $table = plugin_table( 'templates' );
@@ -134,7 +127,7 @@ class SmsApiPlugin extends MantisPlugin
     function schema() {
         $t_schema = array();
 
-        //
+        //add users table
         $t_table = plugin_table( 'users' );
         $t_ddl = " id  I   NOTNULL UNSIGNED PRIMARY AUTOINCREMENT,
                  user_id I   UNSIGNED NOTNULL DEFAULT '0',
@@ -148,7 +141,7 @@ class SmsApiPlugin extends MantisPlugin
                 $t_table,
                 'user_id', array( 'UNIQUE' ) ) );
 
-        //
+        //add templates table
         $t_table = plugin_table( 'templates' );
         $t_ddl = " id  I   NOTNULL UNSIGNED PRIMARY AUTOINCREMENT,
                  project_id I UNSIGNED NOTNULL DEFAULT '0',

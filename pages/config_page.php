@@ -39,7 +39,7 @@ print_manage_menu( 'manage_plugin_page.php' );
                                 </div>
                             </div>
                             <div class="widget-toolbox padding-8 clearfix">
-                                <input type="submit" class="btn btn-primary btn-white btn-round" value="Zapisz" />
+                                <input type="submit" class="btn btn-primary btn-white btn-round" value="<?php echo plugin_lang_get( 'save' ) ?>" />
                             </div>
                         </div>
                     </div>

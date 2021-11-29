@@ -49,7 +49,7 @@ $t_form_encoding = '';
                             <table class="table table-bordered table-condensed">
                                     <tr>
                                         <th class="category">
-                                            <label for="message">Tresc wiadomosci</label>
+                                            <label for="message"><?php echo plugin_lang_get('message') ?></label>
                                         </th>
                                         <td>
                                             <textarea class="form-control" <?php echo helper_get_tab_index() ?> id="message" name="message" cols="80" rows="10"><?php echo string_textarea( $message ) ?></textarea>

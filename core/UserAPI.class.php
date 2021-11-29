@@ -2,25 +2,16 @@
 namespace SmsApi;
 
 class UserAPI {
-
     var $fieldsKeys;
     var $inputPrefix;
     var $inputs;
 
-    /**
-     *
-     *
-     */
     function __construct( $cfgObj ) {
         $this->fieldsKeys = $cfgObj->fieldsKeys;
         $this->inputPrefix = $cfgObj->inputPrefix;
         $this->inputs = $cfgObj->inputs;
     }
 
-    /**
-     *
-     *
-     */
     function smsApiInputs( $p_user_id = null, $p_operation = null ) {
 
         $table = plugin_table( 'users' );
@@ -67,9 +58,6 @@ class UserAPI {
         echo $str_close;
     }
 
-    /**
-     *
-     */
     function insertSmsApiUser($p_user_id) {
         $table = plugin_table( 'users' );
         $userInput = $this->getUserInput();
@@ -91,9 +79,6 @@ class UserAPI {
         db_query($t_query, $t_sql_param);
     }
 
-    /**
-     *
-     */
     function updateSmsApiUser($p_user_id) {
         $table = plugin_table( 'users' );
         $userInput = $this->getUserInput();
@@ -115,9 +100,6 @@ class UserAPI {
         db_query($t_query, $t_sql_param);
     }
 
-    /**
-     *
-     */
     function getUserInput() {
         $userInput = array();
         foreach($this->inputs as $t_ty => $t_vv ) {
@@ -129,6 +111,5 @@ class UserAPI {
         }
         return $userInput;
     }
-
 
 }

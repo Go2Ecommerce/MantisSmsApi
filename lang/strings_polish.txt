@@ -3,3 +3,5 @@ $s_plugin_SmsApi_phone_number = 'Numer telefonu';
 $s_plugin_SmsApi_title = 'Sms Api';
 $s_plugin_SmsApi_configuration_title = 'Konfiguracja SMS szablon';
 $s_plugin_SmsApi_smsApiKey= 'Sms Api Key';
+$s_plugin_SmsApi_message= 'Treść wiadomości';
+$s_plugin_SmsApi_save= 'Zapisz';

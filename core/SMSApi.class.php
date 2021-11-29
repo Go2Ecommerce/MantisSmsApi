@@ -3,9 +3,7 @@ namespace SmsApi;
 
 class SMSApi {
 
-
     function sendSMS($updatedBug) {
-
         $table = plugin_table('users');
         db_param_push();
         $t_query = " SELECT phone_number
@@ -35,9 +33,7 @@ class SMSApi {
 
     }
 
-    function sms_send($params, $token, $backup = false)
-    {
-
+    function sms_send($params, $token, $backup = false) {
         static $content;
 
         if ($backup == true) {
