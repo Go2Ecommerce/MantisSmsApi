@@ -7,6 +7,9 @@ class SmsApiPlugin extends MantisPlugin
     var $smsApi;
     var $userAPI;
 
+    const STATUS_PRZYPISANY = 50;
+    const STATUS_NOWY = 10;
+
     function register() {
         $this->name = 'SmsApi';
         $this->description = 'Plugin to send notifications via SMS api';
@@ -118,7 +121,7 @@ class SmsApiPlugin extends MantisPlugin
     }
 
     function updateBug($p_event, $p_original_bug, $p_updated_bug) {
-        if ($p_original_bug->status === 10 && $p_updated_bug->status === 50) {
+        if (in_array($p_original_bug->status, array(self::STATUS_NOWY,self::STATUS_PRZYPISANY)) && $p_updated_bug->status === self::STATUS_PRZYPISANY) {
             $this->smsApi->sendSMS($p_updated_bug);
         }
 
