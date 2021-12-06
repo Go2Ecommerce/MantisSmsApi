@@ -32,6 +32,7 @@ class SmsApiPlugin extends MantisPlugin
             'EVENT_MANAGE_USER_DELETE' => 'deleteUser',
             'EVENT_MANAGE_PROJECT_DELETE' => 'deleteProject',
 
+            'EVENT_REPORT_BUG' => 'reportBug',
             'EVENT_UPDATE_BUG' => 'updateBug'
         );
     }
@@ -120,11 +121,17 @@ class SmsApiPlugin extends MantisPlugin
         db_query($t_query,$t_sql_param);
     }
 
+    function reportBug($p_event, $p_created_bug) {
+        if ($p_created_bug->status === self::STATUS_PRZYPISANY) {
+            $this->smsApi->sendSMS($p_updated_bug);
+        }
+
+    }
+    
     function updateBug($p_event, $p_original_bug, $p_updated_bug) {
         if (in_array($p_original_bug->status, array(self::STATUS_NOWY,self::STATUS_PRZYPISANY)) && $p_updated_bug->status === self::STATUS_PRZYPISANY) {
             $this->smsApi->sendSMS($p_updated_bug);
         }
-
     }
 
     function schema() {
