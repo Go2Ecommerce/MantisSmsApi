@@ -18,7 +18,14 @@ class SMSApi {
                      FROM {$table} WHERE project_id=" . db_param();
             $t_result = db_query( $t_query, array( $updatedBug->project_id ) );
             $t_row = db_fetch_array( $t_result );
-            $message = str_replace(array('{bug_id}', '{summary}'), array($updatedBug->id, $updatedBug->summary), $t_row['message']);
+            preg_match('/{summary}\[(.*?)\]/', $t_row['message'], $matchSummary);
+            $summary = $updatedBug->summary;
+
+            if (isset($match[1])) {
+                $summary = mb_substr($$summary, 0, $match[1]);
+            }
+
+            $message = str_replace(array('{bug_id}', '{summary}'), array($updatedBug->id, $summary), $t_row['message']);
 
             $params = array(
                 'to' => $t_row_user['phone_number'],
