@@ -21,8 +21,8 @@ class SMSApi {
             preg_match('/{summary}\[(.*?)\]/', $t_row['message'], $matchSummary);
             $summary = $updatedBug->summary;
 
-            if (isset($match[1])) {
-                $summary = mb_substr($$summary, 0, $match[1]);
+            if (isset($matchSummary[1])) {
+                $summary = mb_substr($$summary, 0, $matchSummary[1]);
             }
 
             $message = str_replace(array('{bug_id}', '{summary}'), array($updatedBug->id, $summary), $t_row['message']);
