@@ -22,10 +22,14 @@ class SMSApi {
             $summary = $updatedBug->summary;
 
             if (isset($matchSummary[1])) {
-                $summary = mb_substr($$summary, 0, $matchSummary[1]);
+                $summary = mb_substr($summary, 0, $matchSummary[1]);
+                $message = preg_replace('/{summary}\[(.*?)\]/', $summary, $t_row['message']);
+            } else {
+                $message = str_replace(array('{summary}'), array($summary), $t_row['message']); 
             }
 
-            $message = str_replace(array('{bug_id}', '{summary}'), array($updatedBug->id, $summary), $t_row['message']);
+            $message = str_replace(array('{bug_id}'), array($updatedBug->id), $message);
+
 
             $params = array(
                 'to' => $t_row_user['phone_number'],
