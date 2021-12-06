@@ -122,7 +122,7 @@ class SmsApiPlugin extends MantisPlugin
     }
 
     function reportBug($p_event, $p_created_bug) {
-        if ($p_created_bug->status === self::STATUS_PRZYPISANY) {
+        if ($p_created_bug->handler_id !== 0) {
             $this->smsApi->sendSMS($p_created_bug);
         }
 
