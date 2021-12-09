@@ -9,6 +9,8 @@ class SmsApiPlugin extends MantisPlugin
 
     const STATUS_PRZYPISANY = 50;
     const STATUS_NOWY = 10;
+    const STATUS_ROZWIAZANY = 80;
+    const STATUS_ZWROCONY = 20;
 
     function register() {
         $this->name = 'SmsApi';
@@ -129,7 +131,7 @@ class SmsApiPlugin extends MantisPlugin
     }
     
     function updateBug($p_event, $p_original_bug, $p_updated_bug) {
-        if (in_array($p_original_bug->status, array(self::STATUS_NOWY,self::STATUS_PRZYPISANY)) && $p_updated_bug->status === self::STATUS_PRZYPISANY) {
+        if (in_array($p_original_bug->status, array(self::STATUS_NOWY,self::STATUS_PRZYPISANY, self::STATUS_ROZWIAZANY, self::STATUS_ZWROCONY)) && $p_updated_bug->status === self::STATUS_PRZYPISANY) {
             $this->smsApi->sendSMS($p_updated_bug);
         }
     }
